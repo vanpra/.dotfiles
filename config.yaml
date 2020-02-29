@@ -1,0 +1,32 @@
+config:
+  backup: true
+  create: true
+  dotpath: dotfiles
+dotfiles:
+  d_i3:
+    src: i3
+    dst: ~/.config/i3
+  d_rofi:
+    src: rofi
+    dst: ~/.config/rofi
+  d_polybar:
+    src: polybar
+    dst: ~/.config/polybar
+  d_fish:
+    src: fish
+    dst: ~/.config/fish
+  f_dunstrc:
+    src: dunstrc
+    dst: ~/.config/dunstrc
+  d_tilix:
+    src: tilix
+    dst: ~/.config/tilix
+profiles:
+  laptop:
+    dotfiles:
+    - d_i3
+    - d_rofi
+    - d_polybar
+    - d_fish
+    - f_dunstrc
+    - d_tilix

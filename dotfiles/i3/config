@@ -1,0 +1,183 @@
+# mod
+set $mod Mod4
+
+# font
+font pango:Hack, FontAwesome, Roboto
+
+# thin borders
+hide_edge_borders both
+
+# drag windows
+floating_modifier $mod
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# lock
+#bindsym $mod+Shift+x exec i3lock --textcolor=eee8d5ff --ringcolor=07364295 --keyhlcolor=268bd295 --bshlcolor=dc322f95 --insidecolor=002b3695 --insidevercolor=268bd295 --ringvercolor=268bd295 --insidewrongcolor=dc322f95 --ringwrongcolor=dc322f95 --linecolor=07364295 --separatorcolor=07364295
+bindsym $mod+Shift+l exec $HOME/.config/i3/scripts/lock.sh $HOME/.config/i3/images/pad.png
+
+# move focused window
+bindsym $mod+Shift+h move workspace to output left
+bindsym $mod+Shift+j move workspace to output right 
+bindsym $mod+Shift+k move up
+
+# split in horizontal orientation
+bindsym $mod+h+v split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+Shift+u fullscreen
+
+# change container layout
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+set $workspace1 " 1 "
+set $workspace2 " 2 "
+set $workspace3 " 3 "
+set $workspace4 " 4 "
+set $workspace5 " 5 "
+set $workspace6 " 6 "
+set $workspace7 " 7 "
+set $workspace8 " 8 "
+set $workspace9 " 9 "
+set $workspace10 " 10 "
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace10
+
+# switch to workspace
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
+bindsym Control+Shift+Tab workspace next
+bindsym Control+Shift+Escape workspace prev
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace
+bindsym $mod+Shift+r restart
+
+# exit i3
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Logout?' -b 'Yes' 'i3-msg exit'"
+
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
+
+    bindsym Lefj resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# resize mode
+bindsym $mod+r mode "resize"
+
+set $bg-color 	         #2f343fee
+set $inactive-bg-color   #2f343fee
+set $text-color          #f3f4f5
+set $inactive-text-color #676E7D
+set $urgent-bg-color     #E53935
+
+#bb <- Good transparency (disabled because of black borders on GTK windows)
+set $boract              #268bd2
+#50
+set $boroff              #2f343f
+#90
+set $indcol              #93c7eb
+
+# window colors
+#                       border              background         text                 indicator
+client.focused          $boract             $boract            $text-color          $indcol
+client.unfocused        $boroff	            $boroff            $inactive-text-color $boroff
+client.focused_inactive $boroff             $boroff            $inactive-text-color $boroff
+client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          $indcol
+
+
+# key-bindings
+bindsym XF86AudioLowerVolume exec pamixer --decrease 5
+bindsym XF86AudioRaiseVolume exec pamixer --increase 5
+bindsym XF86AudioMute exec pamixer -t # mute sound
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86MonBrightnessDown exec xbacklight -steps 1 -time 0 -dec 5
+bindsym XF86MonBrightnessUp exec xbacklight -steps 1 -time 0 -inc 5
+
+bindsym $mod+Return exec tilix
+bindsym $mod+Shift+q kill
+bindsym $mod+d exec rofi -show run
+bindsym $mod+n exec nautilus
+bindsym $mod+f exec firefox-developer-edition
+bindsym $mod+g exec gpmdp
+#bindsym $mod+m exec google-chrome-unstable --force-dark-mode --app=https://music.youtube.com
+bindsym $mod+m exec gpmdp
+bindsym $mod+i exec intellij-idea-ultimate-edition
+bindsym $mod+a exec android-studio-canary
+bindsym $mod+c exec code-insiders
+bindsym $mod+b exec google-chrome-unstable --force-dark-mode   
+bindsym $mod+Shift+s exec systemctl suspend
+
+
+new_window 1pixel
+for_window [class="firefox-developer-edition"] move to workspace $workspace2
+for_window [class="Spotify"] move to workspace $workspace1
+for_window [class="code"] move to workspace $workspace3
+for_window [class="google-chrome-stable"] move to workspace $workspace1
+for_window [class="gpmdp"] move to workspace $workspace1
+for_window [class="android-studio-canary"] move to $workspace3
+
+bindsym Control+Mod1+Down exec xrandr --output eDP-1 --rotate normal
+bindsym Control+Mod1+Up exec xrandr --output eDP-1 --rotate inverted
+bindsym Control+Mod1+Left exec xrandr --output eDP-1 --rotate right
+bindsym Control+Mod1+Right exec xrandr --output eDP-1 --rotate left
+
+# startup
+exec compton
+exec_always --no-startup-id rmmod pcspkr
+exec_always --no-startup-id feh --bg-fill "/home/pranav/Pictures/background.jpg"
+exec_always --no-startup-id killall polybar; polybar main -c "/home/pranav/.config/i3/scripts/polybar"
+exec --no-startup-id mpd
+exec --no-startup-id compton --config "/home/pranav/.config/compton.conf"
+exec --no-startup-id dunst -conf "/home/pranav/.config/dunstrc"
+exec --no-startup-id conky main -c "/home/pranav/.config/i3/scripts/conky"
+exec --no-startup-id mopidy
+exec setxkbmap -layout gb
+exec ntpd -pg
