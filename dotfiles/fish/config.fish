@@ -42,8 +42,7 @@ set GOOGLE_APPLICATION_CREDENTIALS /home/pranav/Documents/gcp.json
 set ANDROID_HOME /opt/android-sdk/tools
 set PATH /opt/flutter/bin $PATH
 set XDG_CURRENT_DESKTOP i3
-set PATH $HOME/.elan/bin $PATH
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/pranav/work/Virtual Assistants/Alexa/WWTBAM/.config/google-cloud-sdk/path.fish.inc' ]; . '/home/pranav/work/Virtual Assistants/Alexa/WWTBAM/.config/google-cloud-sdk/path.fish.inc'; end
+set PATH $HOME/Uni/Year\ 2/C/pintos_task0_pm1019/src/utils $PATH
 set BINTRAY_USER vanpra
 set BINTRAY_API_KEY 91fd3568ae3c99621ba38d0f18a4ce16321a04ea
+

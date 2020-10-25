@@ -25,20 +25,20 @@ margin-top = 5
 margin-bottom = 5
 
 [bar/main]
+monitor = ${env:MONITOR:}
 bottom = false
 top = true
 width = 100%
-height = 28
+height = 18
 
-;override-redirect = true
+override-redirect = true
 wm-restack = i3
+enable-ipc = true
 
 fixed-center = false
 
-
 background = ${colors.background}
 foreground = ${colors.foreground}
-
 
 overline-size = 2
 overline-color = #f00
@@ -58,20 +58,9 @@ font-2 = FontAwesome:pixelsize=9;0
 
 modules-left = i3 xwindow
 modules-center = 
-modules-right = volume s battery s systemHome s memory s date
+modules-right = pulseaudio s battery s systemHome s memory s date
 tray-position = right
-tray-padding = 2
-
-;wm-restack = bspwm
-;wm-restack = i3
-
-;override-redirect = true
-
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
-
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
+tray-padding = 1
 
 
 [module/spotify] 
@@ -338,6 +327,29 @@ format-prefix = " "
 format-underline = #3971ED
 
 label = %date% %time%
+
+
+[module/pulseaudio]
+type = internal/pulseaudio
+use-ui-max = true
+interval = 5
+format-volume = <ramp-volume> <label-volume>
+ramp-volume-foreground = #ff1744
+label-volume = %percentage%%
+label-volume-foreground = #ff1744
+format-volume-underline = #ff1744
+
+label-muted = 🔇 Muted
+label-muted-underline = #ff1744
+label-muted-foreground = #ff1744
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+click-right = pavucontrol &
+
+
 
 [module/volume]
 inherit = module/theme

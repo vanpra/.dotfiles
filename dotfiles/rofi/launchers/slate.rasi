@@ -1,0 +1,74 @@
+configuration {
+    drun-display-format: "{icon} {name}";
+    display-drun: "Apps";
+	show-icons: true;
+	icon-theme: "Papirus-Dark";
+	location: 2;
+	fake-transparency: false;
+	hide-scrollbar: true;
+	bw: 0;
+        fullscreen: true;
+        show-icons: true;
+	terminal: "tilix";
+	sidebar-mode: false;
+}
+
+* {
+  bg: #282C33;
+  ac: #869fa214;
+  ac-txt: #869fa2;
+  item: #bdc3c3;
+  txt: #d1d5da;
+}
+
+* {
+  background-color: rgba(0,0,0,0);
+  border-color: #2e343f;
+  text-color: #8ca0aa;
+  spacing: 0;
+  width: 512px;
+}
+
+window {
+  transparency: "real";
+  fullscreen: true;
+}
+
+inputbar {
+  background-color: @bg;
+  margin: 25% 30% 0% 30%;
+  border: 0 0 1px 0;
+  children: [prompt,entry];
+}
+
+prompt {
+  padding: 16px;
+  border: 0 1px 0 0;
+}
+
+textbox {
+  background-color: #2e343f;
+  border: 0 0 1px 0;
+  border-color: #282C33;
+  padding: 8px 16px;
+}
+
+entry {
+  padding: 16px;
+}
+
+listview {
+  cycle: false;
+  margin: 0% 30% 25% 30%;
+  background-color: @bg;
+  scrollbar: false;
+}
+
+element {
+  border: 0 0 1px 0;
+  padding: 16px;
+}
+
+element selected {
+  background-color: #2e343f;
+}

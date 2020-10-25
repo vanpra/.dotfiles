@@ -1,4 +1,4 @@
-# mod
+## mod
 set $mod Mod4
 
 # font
@@ -24,9 +24,7 @@ bindsym $mod+Shift+l exec $HOME/.config/i3/scripts/lock.sh $HOME/.config/i3/imag
 bindsym $mod+Shift+h move workspace to output left
 bindsym $mod+Shift+j move workspace to output right 
 bindsym $mod+Shift+k move up
-
-# split in horizontal orientation
-bindsym $mod+h+v split h
+bindsym $mod+Shift+o move right
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -98,7 +96,7 @@ mode "resize" {
     bindsym k resize shrink height 10 px or 10 ppt
     bindsym l resize grow width 10 px or 10 ppt
 
-    bindsym Lefj resize shrink width 10 px or 10 ppt
+    bindsym Left resize shrink width 10 px or 10 ppt
     bindsym Down resize grow height 10 px or 10 ppt
     bindsym Up resize shrink height 10 px or 10 ppt
     bindsym Right resize grow width 10 px or 10 ppt
@@ -107,6 +105,7 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 
+default_border pixel 1
 # resize mode
 bindsym $mod+r mode "resize"
 
@@ -130,7 +129,6 @@ client.unfocused        $boroff	            $boroff            $inactive-text-co
 client.focused_inactive $boroff             $boroff            $inactive-text-color $boroff
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          $indcol
 
-
 # key-bindings
 bindsym XF86AudioLowerVolume exec pamixer --decrease 5
 bindsym XF86AudioRaiseVolume exec pamixer --increase 5
@@ -143,41 +141,24 @@ bindsym XF86MonBrightnessUp exec xbacklight -steps 1 -time 0 -inc 5
 
 bindsym $mod+Return exec tilix
 bindsym $mod+Shift+q kill
-bindsym $mod+d exec rofi -show run
+bindsym $mod+d exec ~/.config/rofi/launcher.sh
 bindsym $mod+n exec nautilus
 bindsym $mod+f exec firefox-developer-edition
-bindsym $mod+g exec gpmdp
-#bindsym $mod+m exec google-chrome-unstable --force-dark-mode --app=https://music.youtube.com
-bindsym $mod+m exec gpmdp
 bindsym $mod+i exec intellij-idea-ultimate-edition
 bindsym $mod+a exec android-studio-canary
 bindsym $mod+c exec code-insiders
-bindsym $mod+b exec google-chrome-unstable --force-dark-mode   
 bindsym $mod+Shift+s exec systemctl suspend
 
-
-new_window 1pixel
-for_window [class="firefox-developer-edition"] move to workspace $workspace2
-for_window [class="Spotify"] move to workspace $workspace1
-for_window [class="code"] move to workspace $workspace3
-for_window [class="google-chrome-stable"] move to workspace $workspace1
-for_window [class="gpmdp"] move to workspace $workspace1
-for_window [class="android-studio-canary"] move to $workspace3
-
-bindsym Control+Mod1+Down exec xrandr --output eDP-1 --rotate normal
-bindsym Control+Mod1+Up exec xrandr --output eDP-1 --rotate inverted
-bindsym Control+Mod1+Left exec xrandr --output eDP-1 --rotate right
-bindsym Control+Mod1+Right exec xrandr --output eDP-1 --rotate left
-
-# startup
-exec compton
+# Turns off PC beeps
 exec_always --no-startup-id rmmod pcspkr
+
+#UI Setup
 exec_always --no-startup-id feh --bg-fill "/home/pranav/Pictures/background.jpg"
-exec_always --no-startup-id killall polybar; polybar main -c "/home/pranav/.config/i3/scripts/polybar"
-exec --no-startup-id mpd
-exec --no-startup-id compton --config "/home/pranav/.config/compton.conf"
+exec_always --no-startup-id killall polybar; "/home/pranav/.config/i3/scripts/run_polybar"
+exec_always picom --blur-background --blur-method dual_kawase --blur-strength 12 --experimental-backends  --backend glx
 exec --no-startup-id dunst -conf "/home/pranav/.config/dunstrc"
 exec --no-startup-id conky main -c "/home/pranav/.config/i3/scripts/conky"
-exec --no-startup-id mopidy
-exec setxkbmap -layout gb
-exec ntpd -pg
+exec --no-startup-id python "/home/pranav/.config/i3/scripts/display_switcher.py"
+# Media Contorller
+exec --no-startup-id mpd
+

@@ -1,0 +1,10 @@
+#!/bin/bash
+if [ -z "$(pgrep -x polybar)" ]; then
+    for m in $(polybar --list-monitors | cut -d":" -f1); do
+	export MONITOR=$m
+	polybar main -c "/home/pranav/.config/i3/scripts/polybar" &
+        sleep 1
+    done
+else
+    polybar-msg cmd restart
+fi
