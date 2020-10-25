@@ -30,3 +30,11 @@ profiles:
     - d_fish
     - f_dunstrc
     - d_tilix
+  hp-8200:
+    dotfiles:
+    - d_i3
+    - d_rofi
+    - d_polybar
+    - d_fish
+    - f_dunstrc
+    - d_tilix
